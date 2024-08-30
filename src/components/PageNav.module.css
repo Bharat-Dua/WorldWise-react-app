@@ -1,0 +1,11 @@
+:global(.nav) {
+  border: 1px solid red;
+  color: yellow;
+  background-color: brown;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: green; */
+}
