@@ -15,21 +15,12 @@ const formatDate = (date) =>
 
 function City() {
   const { id } = useParams();
-  const { getCity, currentCity, isLoading } = useCitiesContext();
+  const { getCity, currentCity, isLoading, getFlag } = useCitiesContext();
   const { cityName, emoji, date, notes } = currentCity;
 
   useEffect(() => {
     getCity(id);
   }, [id]);
-
-  const flagemojiToPNG = (flag) => {
-    var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
-      .map((char) => String.fromCharCode(char - 127397).toLowerCase())
-      .join("");
-    return (
-      <img src={`https://flagcdn.com/24x18/${countryCode}.png`} alt="flag" />
-    );
-  };
 
   if (isLoading) return <Spinner />;
 
@@ -38,7 +29,7 @@ function City() {
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
-          <span>{emoji ? flagemojiToPNG(emoji) : ""}</span> {cityName}
+          <span>{emoji ? getFlag(emoji) : ""}</span> {cityName}
         </h3>
       </div>
 

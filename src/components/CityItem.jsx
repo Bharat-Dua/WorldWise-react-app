@@ -10,17 +10,8 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
-const flagemojiToPNG = (flag) => {
-  var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
-    .map((char) => String.fromCharCode(char - 127397).toLowerCase())
-    .join("");
-  return (
-    <img src={`https://flagcdn.com/24x18/${countryCode}.png`} alt="flag" />
-  );
-};
-
 function CityItem({ city }) {
-  const { currentCity } = useCitiesContext();
+  const { currentCity, getFlag } = useCitiesContext();
 
   const { cityName, emoji, date, id, position } = city;
 
@@ -32,7 +23,7 @@ function CityItem({ city }) {
           id === currentCity.id ? styles["cityItem--active"] : ""
         }`}
       >
-        <span className={styles.emoji}>{flagemojiToPNG(emoji)}</span>
+        <span className={styles.emoji}>{emoji ? getFlag(emoji) : ""}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>({formatDate(date)})</time>
         <button className={styles.deleteBtn}>&times;</button>
