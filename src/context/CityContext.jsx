@@ -24,10 +24,12 @@ function CitiesProvider({ children }) {
     }
     fetchCities();
   }, []);
+  const CitiesContextValues = { isLoading, cities };
   return (
-    <CitiesContext.Provider value={{ cities, isLoading }}>
+    <CitiesContext.Provider value={CitiesContextValues}>
       {children}
     </CitiesContext.Provider>
   );
 }
-export { CitiesProvider };
+
+export { CitiesContext, CitiesProvider };
