@@ -33,12 +33,30 @@ function CitiesProvider({ children }) {
       const data = await res.json();
       setCurrentCity(data);
     } catch (error) {
-      alert("no data", error);
+      console.log("no data", error);
     } finally {
       setIsLoading(false);
     }
   }
-
+  async function createCity(newCity) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCity),
+      });
+      const data = await res.json();
+      console.log(data);
+      setCities((cities) => [...cities, data]);
+    } catch (error) {
+      console.log("no data", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   function getFlag(flag) {
     if (flag === undefined) return;
     var countryCode = Array.from(flag, (codeUnit) => codeUnit.codePointAt())
@@ -55,6 +73,7 @@ function CitiesProvider({ children }) {
     currentCity,
     getCity,
     getFlag,
+    createCity,
   };
   return (
     <CitiesContext.Provider value={CitiesContextValues}>

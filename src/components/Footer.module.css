@@ -1,12 +1,16 @@
 .footer {
-  margin-top: auto;
+  margin-top: 2px;
 }
 
 .copyright {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--color-light--1);
+  word-spacing: 2px;
+  padding-top: 3px;
 }
 
 .link {
-  text-decoration: none;
+  /* text-decoration: none; */
+  color: #fff;
+  font-weight: 500;
 }
