@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import PageNav from "../components/PageNav";
 import useFakeAuth from "../hooks/useFakeAuth";
@@ -19,7 +19,7 @@ export default function Login() {
     console.log(email, password);
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isAuthenticated) navigate("/app", { replace: true });
   }, [isAuthenticated, navigate]);
 
